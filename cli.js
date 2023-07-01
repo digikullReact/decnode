@@ -15,3 +15,5 @@ function Sum(a,b){
 // where user will enter the word and you will have to outpu them its definition
 
 // [{"Cat":"A feline animal"}]
+
+
