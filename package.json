@@ -18,6 +18,8 @@
   },
   "homepage": "https://github.com/digikullReact/decnode#readme",
   "dependencies": {
-    "axios": "^1.4.0"
+    "axios": "^1.4.0",
+    "cli-spinner": "^0.2.10",
+    "ora": "^6.3.1"
   }
 }
