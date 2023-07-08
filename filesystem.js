@@ -46,3 +46,35 @@ fs.appendFile("files/names.txt",`dipanshu,paramjeet,sachin${os.EOL}`,(err,data)=
 // so you have to read a file of string 
 // you have to convert all the names into uppercase
 // you have to write it in other file
+
+fs.readFile("files/data.pdf",'utf-8',(err,data)=>{
+  //  console.log(data)
+
+    if (err){
+        console.log(err);
+        return ;
+    }
+
+    // We will convert the data to uppercase
+    const uppercase=data.toLocaleUpperCase();
+    // We have to write it in another file
+    fs.writeFile("files/uppercase.pdf",uppercase,(err,data)=>{
+        if (err){
+            console.log("Error In writing file",err);
+            return ;
+        }
+    })
+
+})
+
+// I want to remove a file
+
+fs.unlink("files/data.pdf",(err,data)=>{
+
+
+    if (err){
+        console.log(err);
+        return ;
+    }
+
+})
