@@ -13,6 +13,37 @@ fs.readFile("files/data.txt","utf-8",(err,data)=>{
 
 })
 
+
+function fsPromise(fileName,character){
+
+const promise=new Promise((resolve,reject)=>{
+
+    fs.readFile(fileName,character,(err,data)=>{
+        if(err){
+          //  console.error(err);
+          reject(err);
+            return ;
+         
+        }
+        resolve(data);
+       // console.log("Data",data);
+    
+    })
+
+})
+return promise;
+
+}
+
+fsPromise("files/data.txt","utf-8").then(data=>{
+console.log(data);
+}).catch(err=>{
+    console.log(err);
+})
+
+
+
+
 // write to a file 
 // it creates the file if it doesn't exists
 // it doesnt creates the directory for you it only creates file

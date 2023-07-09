@@ -1,3 +1,5 @@
+console.log(process.argv); // Array will be printed
+
 console.log(Sum(process.argv[2],process.argv[3]));
 
 
