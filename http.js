@@ -3,7 +3,7 @@ const fs = require("fs");
 
 
 const listener = function (req, res) {
-    console.log(req.url)
+  //  console.log(req.url)
     const method = req.method
     switch (method) {
         case "GET":
@@ -87,6 +87,28 @@ const listener = function (req, res) {
 
             break;
         case "POST":
+            if (req.url=="/postdata"){
+                let body="";
+                // We will parse the data 
+                req.on("data",(chunk)=>{
+                    body=body+chunk.toString();
+
+                })
+
+                req.on("end",()=>{
+                   console.log(JSON.parse(body).name);
+
+                   // You have to write the data in the file 
+                   // Add the user data in a file
+                   // Multiple records in json file 
+
+                   res.end("Request Received");
+
+                })
+
+
+
+            }
             // We will handle post request here
             break;
         default:
