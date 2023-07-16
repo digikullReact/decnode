@@ -83,6 +83,24 @@ const listener = function (req, res) {
                 res.end();
 
             }
+            else if (req.url=="/jsondata"){
+
+                fs.readFile("db/db.json",'utf-8',(err,data)=>{
+
+                    if(err){
+                        res.end("Error in reading database");
+                        return;
+                    }
+
+                    res.setHeader("Content-Type", "application/json")
+                    res.write(data);
+                    res.end();
+    
+
+                })
+
+              
+            }
 
 
             break;
@@ -108,11 +126,16 @@ const listener = function (req, res) {
                     // We will have the records
 
                     console.log("Data recvd",data);
+                    const userData=JSON.parse(body)
+                    userData.id = "id" + Math.random().toString(16).slice(2)
+
+
+                    // We have to add id to every data for making them unqiue
 
                     if (data.length>0){
                        // We will append the records
 
-                       const existingData=[...JSON.parse(data),JSON.parse(body)]
+                       const existingData=[...JSON.parse(data),userData]
                        fs.writeFile("db/db.json",JSON.stringify(existingData),(err,data)=>{
                         if (err){
                             res.end("Error in writing  database");
@@ -127,7 +150,7 @@ const listener = function (req, res) {
 
                     }else{
                          // Insert the record
-                         const data=[JSON.parse(body)]
+                         const data=[userData]
 
 
                          fs.writeFile("db/db.json",JSON.stringify(data),(err,data)=>{
@@ -159,6 +182,13 @@ const listener = function (req, res) {
             }
             // We will handle post request here
             break;
+
+       case "PUT":
+        // Write the put query to update the data 
+
+
+        
+       break;
         default:
             res.end("Method Not configured")
 
