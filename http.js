@@ -96,13 +96,61 @@ const listener = function (req, res) {
                 })
 
                 req.on("end",()=>{
-                   console.log(JSON.parse(body).name);
+                   //console.log(JSON.parse(body).name);
+
+                   // Read the records --
+                   fs.readFile("db/db.json",'utf-8',(err,data)=>{
+                    if(err){
+                        res.end("Error in reading database");
+                        return;
+                    }
+
+                    // We will have the records
+
+                    console.log("Data recvd",data);
+
+                    if (data.length>0){
+                       // We will append the records
+
+                       const existingData=[...JSON.parse(data),JSON.parse(body)]
+                       fs.writeFile("db/db.json",JSON.stringify(existingData),(err,data)=>{
+                        if (err){
+                            res.end("Error in writing  database");
+                            return;
+                        }
+                        res.end("Data added successfully");
+                        return;
+                     });
+
+
+
+
+                    }else{
+                         // Insert the record
+                         const data=[JSON.parse(body)]
+
+
+                         fs.writeFile("db/db.json",JSON.stringify(data),(err,data)=>{
+                            if (err){
+                                res.end("Error in writing  database");
+                                return;
+                            }
+                            res.end("Data added successfully");
+                            return;
+                         });
+
+                    }
+
+                   })
+
+
+                  /// fs.appendFile()
 
                    // You have to write the data in the file 
                    // Add the user data in a file
                    // Multiple records in json file 
 
-                   res.end("Request Received");
+                  // res.end("Request Received");
 
                 })
 
