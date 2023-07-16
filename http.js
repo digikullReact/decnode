@@ -185,8 +185,21 @@ const listener = function (req, res) {
 
        case "PUT":
         // Write the put query to update the data 
+        if(req.url.includes("putdata")){
 
+            // We will handle the put request
+            console.log(req.url.split("/"));
+            res.end("Put request recvd");
 
+            // Your task -- is to modify the existing data
+        }
+
+        break;
+
+case "DELETE":
+
+// you an handle delete request here 
+// Your task is to write delete Api as well 
         
        break;
         default:
