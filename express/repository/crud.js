@@ -9,6 +9,7 @@ let Db=[
 const saveData=(data)=>{
    data.id=uuidv4();
     Db.push(data);
+    return data;
 
 }
 const editData=(data)=>{

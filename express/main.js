@@ -7,6 +7,8 @@ const htmlRoutes=require("./routes/html");
 const {engine}=require("express-handlebars");
 const templateEngineRoutes=require("./routes/templateengine");
 const crudRoute=require("./routes/crud");
+const restRoute=require("./routes/crud_rest");
+
 
 // How to get 
 // route params
@@ -21,6 +23,8 @@ app.use(express.urlencoded({extended:true}));
 app.use("/html",htmlRoutes);
 app.use("/template",templateEngineRoutes);
 app.use("/crud",crudRoute);
+app.use("/rest",restRoute);
+
 
 
 app.use("/products",productRouter)
