@@ -27,6 +27,33 @@ router.post("/", (req, res) => {
 
 })
 
+router.put("/:id", (req, res) => {
+    req.body.id=req.params.id
+    let data=editData(req.body);
+
+    res.json({
+        message:"success",
+        data:data
+    })
+
+  ///  console.log("Form incoming",req.body)
+
+})
+
+router.delete("/:id", (req, res) => {
+  
+    let data=deleteData(req.params.id);
+
+    res.json({
+        message:"succesfully deleted",
+        data:data
+    })
+
+  ///  console.log("Form incoming",req.body)
+
+})
+
+
 
 // You have to create put and delete routes;
 

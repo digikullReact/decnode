@@ -16,6 +16,7 @@ const editData=(data)=>{
     Db=Db.filter(ele=>ele.id!=data.id);
    
      Db.push(data);
+     return data;
  
  }
 
