@@ -1,6 +1,7 @@
 const express=require("express");
 const router=express.Router();
 const path=require("path");
+const fs=require("fs");
 
 const viewPath=path.join(__dirname,"../","html")
 
@@ -30,8 +31,17 @@ router.get("/",(req,res)=>{
 router.get("/data",(req,res)=>{
     // console.log();
  
+    fs.readFile("./db/db.json","utf-8",(err,result)=>{
+        if(err){
+            res.send("Error")
+            return
+        }
+
+       // console.log(result);
+        res.render("data",{name:"shubham",list:JSON.parse(result)});
+
+    })
  
-    res.render("data",{name:"shubham",list:data});
  })
  
 
