@@ -11,6 +11,12 @@ const saveData=(data)=>{
     Db.push(data);
 
 }
+const editData=(data)=>{
+    Db=Db.filter(ele=>ele.id!=data.id);
+   
+     Db.push(data);
+ 
+ }
 
 const getData=(data)=>{
 
@@ -43,7 +49,8 @@ module.exports={
     saveData,
     getData,
     deleteData,
-    getDataById
+    getDataById,
+    editData
     
     
 }

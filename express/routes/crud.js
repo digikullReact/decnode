@@ -1,6 +1,6 @@
 const express=require("express");
 const router=express.Router();
-const {saveData,getData,deleteData,getDataById}=require("../repository/crud");
+const {saveData,getData,deleteData,getDataById,editData}=require("../repository/crud");
 
 router.get("/", (req, res) => {
     res.render("form");
@@ -18,6 +18,14 @@ router.get("/viewData", (req, res) => {
 
 router.post("/", (req, res) => {
     saveData(req.body);
+    res.redirect("/crud/viewData");
+
+  ///  console.log("Form incoming",req.body)
+
+})
+router.post("/edit", (req, res) => {
+    console.log(req.body);
+    editData(req.body);
     res.redirect("/crud/viewData");
 
   ///  console.log("Form incoming",req.body)
