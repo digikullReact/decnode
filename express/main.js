@@ -6,6 +6,7 @@ const rootRouter=require("./routes/data");
 const htmlRoutes=require("./routes/html");
 const {engine}=require("express-handlebars");
 const templateEngineRoutes=require("./routes/templateengine");
+const crudRoute=require("./routes/crud");
 
 // How to get 
 // route params
@@ -16,8 +17,11 @@ app.set('views', './views');
 
 
 app.use(express.json());// its a middleware that parses the json body
+app.use(express.urlencoded({extended:true}));
 app.use("/html",htmlRoutes);
 app.use("/template",templateEngineRoutes);
+app.use("/crud",crudRoute);
+
 
 app.use("/products",productRouter)
 app.use("/",rootRouter);
