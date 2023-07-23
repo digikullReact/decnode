@@ -27,9 +27,9 @@ const deleteData=(id)=>{
 
 const getDataById=(id)=>{
 
-    const data=Db.find(ele=>ele.id==id);
+ 
 
-    return data;
+    return userModel.findOne({_id:id})
 
 }
 

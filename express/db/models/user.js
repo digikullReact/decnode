@@ -11,3 +11,6 @@ const userSchema = new Schema({
   });
   const userModel=mongoose.model("user",userSchema);
  module.exports=userModel;
+
+
+ // Create a route to insert 5  records in the db 

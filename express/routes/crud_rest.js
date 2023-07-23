@@ -56,6 +56,15 @@ router.delete("/:id", async (req, res) => {
 
 })
 
+router.get("/:id",async  (req, res) => {
+
+    const data=await getDataById(req.params.id)
+    res.json({
+        data:data
+    })
+
+})
+
 
 
 // You have to create put and delete routes;
