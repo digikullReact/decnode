@@ -1,22 +1,25 @@
 const express=require("express");
 const router=express.Router();
-const {saveData,getData,deleteData,getDataById,editData}=require("../repository/crud");
+const {saveData,getData,deleteData,getDataById,editData}=require("../repository/mongodb");
 
-router.get("/", (req, res) => {
+router.get("/",async  (req, res) => {
 
+    const data=await getData()
     res.json({
-        data:getData()
+        data:data
     })
 
 })
 
+//
 
 
 
 
 
-router.post("/", (req, res) => {
-    let data=saveData(req.body);
+
+router.post("/",async (req, res) => {
+    let data=await saveData(req.body)
 
     res.json({
         message:"success",
@@ -27,9 +30,9 @@ router.post("/", (req, res) => {
 
 })
 
-router.put("/:id", (req, res) => {
+router.put("/:id",async  (req, res) => {
     req.body.id=req.params.id
-    let data=editData(req.body);
+    let data=await editData(req.body);
 
     res.json({
         message:"success",
@@ -40,9 +43,9 @@ router.put("/:id", (req, res) => {
 
 })
 
-router.delete("/:id", (req, res) => {
+router.delete("/:id", async (req, res) => {
   
-    let data=deleteData(req.params.id);
+    let data=await deleteData(req.params.id);
 
     res.json({
         message:"succesfully deleted",

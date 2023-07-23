@@ -8,6 +8,15 @@ const {engine}=require("express-handlebars");
 const templateEngineRoutes=require("./routes/templateengine");
 const crudRoute=require("./routes/crud");
 const restRoute=require("./routes/crud_rest");
+const mongoose = require('mongoose');
+
+
+
+const dbConnect=()=>{
+   return  mongoose.connect('mongodb+srv://dbuser:E1yXLwftoemYcA42@cluster0.jkkvfwg.mongodb.net/?retryWrites=true&w=majority')
+
+
+}
 
 
 // How to get 
@@ -34,12 +43,18 @@ app.use("/",rootRouter);
 
 
  
-
-
+dbConnect().then(data=>{
+    console.log("Connected with Mongdob----")
 
 app.listen("8080", () => {
     console.log("Server running at port 8080")
 })
+
+}).catch(err=>{
+    console.log(err);
+})
+
+
 
 
 
