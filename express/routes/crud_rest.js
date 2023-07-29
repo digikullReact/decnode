@@ -1,8 +1,10 @@
 const express=require("express");
 const router=express.Router();
 const {saveData,getData,deleteData,getDataById,editData}=require("../repository/mongodb");
+const {RoutesLevelLog, RouteLevelLog}=require("../middlewares/middleware");
 
-router.get("/",async  (req, res) => {
+router.use(RoutesLevelLog);
+router.get("/",RouteLevelLog,async  (req, res) => {
 
     const data=await getData()
     res.json({
@@ -18,13 +20,23 @@ router.get("/",async  (req, res) => {
 
 
 
-router.post("/",async (req, res) => {
-    let data=await saveData(req.body)
-
+router.post("/", (req, res) => {
+   saveData(req.body).then(result=>{
     res.json({
         message:"success",
-        data:data
+        data:result
     })
+
+   }).catch(err=>{
+    console.log(err);
+    res.json({
+        message:"failed",
+        data:null,
+        err:err
+    })
+   })
+
+  
 
   ///  console.log("Form incoming",req.body)
 

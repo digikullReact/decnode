@@ -9,6 +9,7 @@ const templateEngineRoutes=require("./routes/templateengine");
 const crudRoute=require("./routes/crud");
 const restRoute=require("./routes/crud_rest");
 const mongoose = require('mongoose');
+const {log}=require("./middlewares/middleware");
 
 
 
@@ -26,7 +27,7 @@ app.engine('handlebars', engine());
 app.set('view engine', 'handlebars');
 app.set('views', './views');
 
-
+app.use(log);// App level middleware
 app.use(express.json());// its a middleware that parses the json body
 app.use(express.urlencoded({extended:true}));
 app.use("/html",htmlRoutes);
