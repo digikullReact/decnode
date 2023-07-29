@@ -1,10 +1,10 @@
 const express=require("express");
 const router=express.Router();
 const {saveData,getData,deleteData,getDataById,editData}=require("../repository/mongodb");
-const {RoutesLevelLog, RouteLevelLog,LogRouteName}=require("../middlewares/middleware");
+const {verifyToken}=require("../middlewares/auth");
 
-router.use(LogRouteName);
-router.get("/",RouteLevelLog,async  (req, res) => {
+router.use(verifyToken);
+router.get("/",async  (req, res) => {
 
     const data=await getData()
     res.json({

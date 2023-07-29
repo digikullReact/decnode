@@ -1,4 +1,6 @@
 const { saveData,getDataByUsername } = require("../repository/mongodb");
+const  jwt = require('jsonwebtoken');
+
 const bcrypt = require('bcrypt');
 
 const Signup=(req, res) => {
@@ -38,7 +40,8 @@ const Login=(req, res) => {
             }else{
 
           // We will now generate the token
-          const token="SOmetoken";
+          const token = jwt.sign({ username: result.username}, 'mysecretkey');
+
 
           res.json({
             message:"Success",
