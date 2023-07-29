@@ -1,9 +1,9 @@
 const express=require("express");
 const router=express.Router();
 const {saveData,getData,deleteData,getDataById,editData}=require("../repository/mongodb");
-const {RoutesLevelLog, RouteLevelLog}=require("../middlewares/middleware");
+const {RoutesLevelLog, RouteLevelLog,LogRouteName}=require("../middlewares/middleware");
 
-router.use(RoutesLevelLog);
+router.use(LogRouteName);
 router.get("/",RouteLevelLog,async  (req, res) => {
 
     const data=await getData()
