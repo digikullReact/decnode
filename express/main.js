@@ -7,6 +7,7 @@ const htmlRoutes=require("./routes/html");
 const {engine}=require("express-handlebars");
 const templateEngineRoutes=require("./routes/templateengine");
 const crudRoute=require("./routes/crud");
+const authRoutes=require("./routes/authRoutes");
 const restRoute=require("./routes/crud_rest");
 const mongoose = require('mongoose');
 const {log}=require("./middlewares/middleware");
@@ -34,6 +35,8 @@ app.use("/html",htmlRoutes);
 app.use("/template",templateEngineRoutes);
 app.use("/crud",crudRoute);
 app.use("/rest",restRoute);
+app.use("/auth",authRoutes);
+
 
 
 

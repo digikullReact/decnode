@@ -33,6 +33,14 @@ const getDataById=(id)=>{
 
 }
 
+const getDataByUsername=(username)=>{
+
+ 
+
+    return userModel.findOne({username:username})
+
+}
+
 const insertMany=(data)=>{
     return userModel.insertMany(data);
 
@@ -47,7 +55,8 @@ module.exports={
     deleteData,
     getDataById,
     editData,
-    insertMany
+    insertMany,
+    getDataByUsername
     
     
 }
