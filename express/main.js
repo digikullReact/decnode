@@ -11,6 +11,7 @@ const authRoutes=require("./routes/authRoutes");
 const restRoute=require("./routes/crud_rest");
 const mongoose = require('mongoose');
 const {log}=require("./middlewares/middleware");
+const fileUploadRoutes=require("./routes/fileUploadroutes");
 
 
 
@@ -27,6 +28,7 @@ const dbConnect=()=>{
 app.engine('handlebars', engine());
 app.set('view engine', 'handlebars');
 app.set('views', './views');
+app.use(express.static('uploads'))
 
 app.use(log);// App level middleware
 app.use(express.json());// its a middleware that parses the json body
@@ -36,6 +38,7 @@ app.use("/template",templateEngineRoutes);
 app.use("/crud",crudRoute);
 app.use("/rest",restRoute);
 app.use("/auth",authRoutes);
+app.use("/file",fileUploadRoutes);
 
 
 
